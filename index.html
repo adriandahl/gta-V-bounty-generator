@@ -294,6 +294,15 @@ function fetchTargets() {
       });
     });
 }
+
+const img = document.createElement('img');
+img.src = t.image;
+img.alt = t.name;
+img.onerror = () => {
+  console.error('Couldn’t load', t.image);
+  img.src = 'path/to/placeholder.png';
+};
+
 </script>
 </body>
 </html>
