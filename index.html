@@ -203,8 +203,8 @@ function generate() {
     <p>📍 <strong>Location:</strong> ${t.location}</p>
     <p>📝 ${cleanedDescription}</p>
     ${t.method ? `<p>🔫 <em>Preferred Method:</em> ${t.method}</p>` : ''}
-    <button class="toggle-button eliminated-btn ${eliminatedStatus[t.id] ? 'active' : ''}" onclick="toggleEliminated('${t.id}', this)">✅ Eliminated</button>
-    ${t.method ? `<button class="toggle-button preferred-btn ${preferredUsed[t.id] ? 'active' : ''}" onclick="togglePreferred('${t.id}', this)" ${!eliminatedStatus[t.id] ? 'disabled' : ''}>🌟 Used Preferred Method</button>` : ''}
+    <button class="toggle-button eliminated-btn ${eliminatedStatus[t.id] ? 'active' : ''}" onclick="toggleEliminated('${t.id}', this)">Eliminated</button>
+    ${t.method ? `<button class="toggle-button preferred-btn ${preferredUsed[t.id] ? 'active' : ''}" onclick="togglePreferred('${t.id}', this)" ${!eliminatedStatus[t.id] ? 'disabled' : ''}>Used Preferred Method</button>` : ''}
     <br><br><button class="generate-button" onclick="generate()">Next Bounty</button>
   `;
 }
