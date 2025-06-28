@@ -77,7 +77,7 @@
     "type": "Civilian",
     "location": "LSIA",
     "description": "Male airport worker on LSIA wearing neon yellow vest, red ear protectors, and tan shorts. Last seen around noon.",
-    "image": "NPCs/lsia_headphones.jpg",
+    "image": "NPCs/LSIA_headphones.jpg",
     "method": "Headshot using precision rifle. Bonus: Take out from passenger / back seat of airborn helicopter using weapon of choice."
   },
   {
