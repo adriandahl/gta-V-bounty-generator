@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GTA V Bounty Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #1e1e1e;
+      color: #eee;
+      margin: 0;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .top-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+    .left-controls {
+      flex: 1;
+      max-width: 300px;
+    }
+    .right-bounty {
+      flex: 2;
+      display: flex;
+      flex-direction: row;
+      gap: 2em;
+      align-items: flex-start;
+      margin: 1em;
+    }
+    .bounty-image {
+      flex: 1.4;
+      margin: 1em;
+    }
+    .bounty-details {
+      flex: 1;
+      background: #2e2e2e;
+      border-radius: 12px;
+      padding: 2em;
+      margin: 1em;
+      font-size: 1.3em;
+    }
+    h1 {
+      color: #facc15;
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+    select, button, input, textarea {
+      margin: 0.5em 0;
+      padding: 0.5em;
+      font-size: 1.1em;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    #bountyCard {
+      display: none;
+      width: 100%;
+    }
+    #bountyCard img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .generate-button {
+      background-color: #fcaf17;
+      color: #000;
+      font-weight: bold;
+      font-size: 1.3em;
+      border: none;
+      border-radius: 6px;
+      padding: 0.8em 1.6em;
+      cursor: pointer;
+    }
+    .toggle-button {
+      padding: 0.4em 1em;
+      margin-top: 1em;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .eliminated-btn.active {
+      background: red;
+      color: white;
+    }
+    .preferred-btn.active {
+      background: purple;
+      color: white;
+    }
+    .purple-star {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: purple;
+      font-size: 1.5em;
+      z-index: 3;
+    }
+    /* Overlay container hidden by default */
+    #galleryOverlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.95);
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 1000;
+      padding: 60px 20px 20px 20px;
+      overflow-y: auto;
+    }
+    /* Close button with 100px right margin */
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 100px;
+      font-size: 32px;
+      color: white;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    /* Scaled gallery content */
+    #gallery {
+      transform: scale(1.6);
+      transform-origin: top center;
+      display: grid;
+      grid-template-columns: repeat(5, 110px);
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+    #gallery img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-section">
+    <div class="left-controls">
+      <h1>GTA V Bounty Generator</h1>
+      <label>Filter by Type:
+        <select id="typeFilter">
+          <option value="All">All</option>
+        </select>
+      </label>
+      <button class="generate-button" onclick="generate()">Generate Bounty</button>
+      <button class="generate-button" onclick="toggleGallery()">Progress</button>
+    </div>
+    <div class="right-bounty">
+      <div id="bountyCard">
+        <div class="bounty-image"><img id="bountyImg" src="" alt="Target Image"></div>
+        <div class="bounty-details" id="bountyDetails"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="galleryOverlay">
+    <button class="close-btn" onclick="toggleGallery()">✖</button>
+    <div id="gallery"></div>
+  </div>
+
+<script>
+let targets = [];
+let eliminatedStatus = {};
+let preferredUsed = {};
+
+function generate() {
+  const bountyCard = document.getElementById('bountyCard');
+  const type = document.getElementById('typeFilter').value;
+  let pool = (type === 'All') ? targets : targets.filter(t => t.type === type);
+  pool = pool.filter(t => !eliminatedStatus[t.id]);
+
+  if (pool.length === 0) {
+    alert('No alive bounties remaining!');
+    bountyCard.style.display = 'none';
+    return;
+  }
+
+  const t = pool[Math.floor(Math.random() * pool.length)];
+  bountyCard.style.display = 'flex';
+  document.getElementById('bountyImg').src = t.image;
+  document.getElementById('bountyImg').alt = t.name;
+  const cleanedDescription = t.description.replace(/last seen.*?(around|at|in)\s+(noon|night|morning|evening|afternoon|24\/7)/i, '$1 $2').trim();
+
+  document.getElementById('bountyDetails').innerHTML = `
+    <h2>${t.name} (${t.type})</h2>
+    <p>📍 <strong>Location:</strong> ${t.location}</p>
+    <p>📝 ${cleanedDescription}</p>
+    ${t.method ? `<p>🔫 <em>Preferred Method:</em> ${t.method}</p>` : ''}
+    <button class="toggle-button eliminated-btn ${eliminatedStatus[t.id] ? 'active' : ''}" onclick="toggleEliminated('${t.id}', this)">✅ Eliminated</button>
+    ${t.method ? `<button class="toggle-button preferred-btn ${preferredUsed[t.id] ? 'active' : ''}" onclick="togglePreferred('${t.id}', this)" ${!eliminatedStatus[t.id] ? 'disabled' : ''}>🌟 Used Preferred Method</button>` : ''}
+    <br><br><button class="generate-button" onclick="generate()">Next Bounty</button>
+  `;
+}
+
+function toggleEliminated(id, btn) {
+  eliminatedStatus[id] = !eliminatedStatus[id];
+  btn.classList.toggle('active', eliminatedStatus[id]);
+  const preferredBtn = document.querySelector(`.preferred-btn[onclick*="${id}"]`);
+  if (preferredBtn) preferredBtn.disabled = !eliminatedStatus[id];
+  renderGallery();
+}
+
+function togglePreferred(id, btn) {
+  preferredUsed[id] = !preferredUsed[id];
+  btn.classList.toggle('active', preferredUsed[id]);
+  renderGallery();
+}
+
+function toggleGallery() {
+  const overlay = document.getElementById('galleryOverlay');
+  const isHidden = window.getComputedStyle(overlay).display === 'none';
+  overlay.style.display = isHidden ? 'flex' : 'none';
+  if (isHidden) renderGallery();
+}
+
+// Prevent gallery from showing on initial load (CSS default hides it)
+window.onload = function() {
+  document.getElementById('galleryOverlay').style.display = 'none';
+  fetchTargets();
+};
+
+// Close overlay when clicking outside the gallery
+const overlayEl = document.getElementById('galleryOverlay');
+if (overlayEl) {
+  overlayEl.addEventListener('click', function(e) {
+    if (e.target === overlayEl) toggleGallery();
+  });
+}
+
+function renderGallery() {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
+  targets.forEach(t => {
+    const container = document.createElement('div');
+    container.className = 'gallery-item';
+    container.style.position = 'relative';
+    container.style.width = '110px';
+    container.style.height = '110px';
+    container.style.borderRadius = '5px';
+    if (eliminatedStatus[t.id]) {
+      // add red border but keep icon in color
+      container.style.border = '3px solid red';
+    }
+
+    const img = document.createElement('img');
+    img.src = t.image;
+    img.alt = t.name;
+    img.style.zIndex = '1';
+    if (eliminatedStatus[t.id]) {
+      img.style.filter = 'grayscale(100%) opacity(0.5)';
+    }
+    container.appendChild(img);
+
+    if (preferredUsed[t.id]) {
+      const star = document.createElement('div');
+      star.className = 'purple-star';
+      star.textContent = '★';
+      container.appendChild(star);
+    }
+
+    gallery.appendChild(container);
+  });
+}
+
+function fetchTargets() {
+  fetch('NPCs/gta_bounty_targets.json?cacheBust=' + Date.now())
+    .then(res => res.json())
+    .then(data => {
+      targets = data;
+      const types = [...new Set(targets.map(t => t.type))];
+      const select = document.getElementById('typeFilter');
+      types.forEach(type => {
+        const opt = document.createElement('option');
+        opt.value = type;
+        opt.textContent = type;
+        select.appendChild(opt);
+      });
+    });
+}
+</script>
+</body>
+</html>

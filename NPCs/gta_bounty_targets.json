@@ -1,0 +1,154 @@
+[
+  {
+    "id": "alta_cap",
+    "name": "Male construction worker",
+    "type": "Civilian",
+    "location": "Alta",
+    "description": "Male construction worker wearing red cap, orange vest, and yellow gloves. Frequent smoker. Last seen around noon.",
+    "image": "NPCs/alta_cap.jpg",
+    "method": "Silenced pistol"
+  },
+  {
+    "id": "alta_orange",
+    "name": "Male \u201cOrange Hat\u201d",
+    "type": "Civilian",
+    "location": "Alta",
+    "description": "Male construction worker wearing orange hard hat and vest. Last seen around noon.",
+    "image": "NPCs/alta_orange.jpg",
+    "method": "Precision rifle from vantage point, escape via parachute and land in the circular city fountain."
+  },
+  {
+    "id": "chamberlain_hills_nosunglasses",
+    "name": "Male DeShawn 'No-Glass' Carter",
+    "type": "Families",
+    "location": "Chamberlain Hills",
+    "description": "Male gang member wearing green jacket, black jeans, gold cross chain, and no glasses. Last seen around noon.",
+    "image": "NPCs/chamberlain_hills_nosunglasses.jpg",
+    "method": "Drive-by"
+  },
+  {
+    "id": "chamberlain_hills_sunglasses",
+    "name": "Male DeShawn 'Shades' Carter",
+    "type": "Families",
+    "location": "Chamberlain Hills",
+    "description": "Male gang member wearing green jacket, gold cross chain, and black sunglasses. Last seen around noon.",
+    "image": "NPCs/chamberlain_hills_sunglasses.jpg",
+    "method": "Switchblade"
+  },
+  {
+    "id": "chamberlain_hills_white",
+    "name": "Male Kareem 'White Tank' Foster",
+    "type": "Families",
+    "location": "Chamberlain Hills",
+    "description": "Male gang member wearing white tank-top, silver cross chain, and black jeans. Last seen around noon.",
+    "image": "NPCs/chamberlain_hills_white.jpg",
+    "method": "Approach in police vehicle and cop outfit. Use taser and nightbat only."
+  },
+  {
+    "id": "purple_yellow",
+    "name": "Female Keisha 'Gold Fang' Banks",
+    "type": "Ballas",
+    "location": "Davis",
+    "description": "Female gang member wearing purple bandana and jacket, yellow shirt, and black pants. Last seen in the afternoon.",
+    "image": "NPCs/davis_balla_yellow.jpg",
+    "method": "Clean shot through the heart."
+  },
+  {
+    "id": "la_mesa_vagos_cap",
+    "name": "Male Hector 'Tank Top' Ruiz",
+    "type": "Vagos",
+    "location": "La Mesa",
+    "description": "Male gang member wearing yellow cap, silver cross chain, and black tank top. Last seen in the afternoon.",
+    "image": "NPCs/la_mesa_vagos_cap.jpg",
+    "method": "Sawed-off shotgun on chopper motorcycle."
+  },
+  {
+    "id": "la_puerta_pink",
+    "name": "Female 'Red Lace'",
+    "type": "Civilian",
+    "location": "La Puerta",
+    "description": "Female redhead prostitute wearing pink top, and blue skirt. Last seen at night.",
+    "image": "NPCs/la_puerta_pink.jpg",
+    "method": "Pick up in a car and eliminate in secluded area using a machete."
+  },
+  {
+    "id": "lsia_headphones",
+    "name": "Male 'Tarmac Tony'",
+    "type": "Civilian",
+    "location": "LSIA",
+    "description": "Male airport worker on LSIA wearing neon yellow vest, red ear protectors, and tan shorts. Last seen around noon.",
+    "image": "NPCs/lsia_headphones.jpg",
+    "method": "Headshot using precision rifle. Bonus: Take out from passenger / back seat of airborn helicopter using weapon of choice."
+  },
+  {
+    "id": "lsia_redshirt",
+    "name": "Male 'Red V' Jefferson",
+    "type": "Civilian",
+    "location": "LSIA",
+    "description": "Male civilian with black cornrows wearing red v-neck shirt, black sunglasses, and tan pants. Frequent smoker. Last seen around noon.",
+    "image": "NPCs/lsia_redshirt.jpg",
+    "method": "Molotov cocktail or weapon of choice + gasoline."
+  },
+  {
+    "id": "mission_row_cop",
+    "name": "Male Officer 'No Cap'",
+    "type": "Cop",
+    "location": "Mission Row",
+    "description": "Male bald cop in front of the police station in Mission Row wearing police uniform and no hat. Last seen at night.",
+    "image": "NPCs/mission_row_cop.jpg"
+  },
+  {
+    "id": "mount_chiliad_mill",
+    "name": "Male 'Smokey Mill'",
+    "type": "Civilian",
+    "location": "Mount Chiliad",
+    "description": "Male mill worker wearing white shirt and jeans overall. Frequent smoker. Last seen in the morning.",
+    "image": "NPCs/mount_chiliad_mill.jpg",
+    "method": "Axe"
+  },
+  {
+    "id": "paleto_bay_cluckin",
+    "name": "Male 'Cluckin' Carl",
+    "type": "Civilian",
+    "location": "Paleto Bay",
+    "description": "Male factory worker wearing blood-covered apron and blue hairnet. Last seen in the morning.",
+    "image": "NPCs/paleto_bay_cluckin.jpg",
+    "method": "Machete"
+  },
+  {
+    "id": "paleto_bay_farmer",
+    "name": "Male 'Old Stripe'",
+    "type": "Civilian",
+    "location": "Paleto Bay",
+    "description": "Male farmer wearing black shirt, blue pants with yellow stripes, and grey cap. Last seen around noon.",
+    "image": "NPCs/paleto_bay_farmer.jpg",
+    "method": "Run over with tractor"
+  },
+  {
+    "id": "strawberry_bouncer",
+    "name": "Male 'Club Iron'",
+    "type": "Civilian",
+    "location": "Strawberry",
+    "description": "Male bouncer wearing black shirt and grey pants. Last seen at night.",
+    "image": "NPCs/strawberry_bouncer.jpg",
+    "method": "Flashlight or knuckleduster."
+  },
+  {
+    "id": "vinewood_hills_security",
+    "name": "Male 'Amp Guard'",
+    "type": "Civilian",
+    "location": "Vinewood Hills",
+    "description": "Male security guard on job at the southwest Amphitheatre. Last seen in the evening.",
+    "image": "NPCs/vinewood_hills_security.jpg",
+    "method": "Tear gas"
+  },
+  {
+    "id": "vinewood_hills_valet",
+    "name": "Male 'Red Vest'",
+    "type": "Civilian",
+    "location": "Vinewood Hills",
+    "description": "Male valet on job wearing red vest. Present 24/7.",
+    "image": "NPCs/vinewood_hills_valet.jpg",
+    "method": "Install a remote detonation device at LS Customs using vehicle of choice and trigger from safe distance."
+  }
+]
